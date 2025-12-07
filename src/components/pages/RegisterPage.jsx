@@ -1,8 +1,10 @@
 import { useEffect } from "react"
 import { getCurrentUser , postRegisterUser} from "../../redux/thunk/ThunkRegister"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 export const RegisterPage = () => {
 const dispatch = useDispatch()
+const navigate = useNavigate()
  useEffect(() => {
 dispatch(getCurrentUser())
  } , [dispatch])
@@ -14,6 +16,7 @@ dispatch(getCurrentUser())
             const password = e.target.elements.password.value
             console.log("SENT:", { name, email, password });
             dispatch(postRegisterUser({name , email , password}))
+            navigate("/contacts")
         }}>
             <label>
                 Name:
